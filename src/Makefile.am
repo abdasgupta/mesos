@@ -846,6 +846,7 @@ libmesos_no_3rdparty_la_SOURCES +=					\
   slave/containerizer/external_containerizer.cpp			\
   slave/containerizer/fetcher.cpp					\
   slave/containerizer/mesos/containerizer.cpp				\
+  slave/containerizer/hypervisor/containerizer.cpp			\
   slave/containerizer/mesos/isolator.cpp				\
   slave/containerizer/mesos/launch.cpp					\
   slave/containerizer/mesos/launcher.cpp				\
@@ -907,6 +908,7 @@ libmesos_no_3rdparty_la_SOURCES +=					\
   credentials/credentials.hpp						\
   docker/docker.hpp							\
   docker/executor.hpp							\
+  hypervisor/executor.hpp						\
   examples/test_anonymous_module.hpp					\
   examples/test_module.hpp						\
   examples/utils.hpp							\
@@ -971,6 +973,7 @@ libmesos_no_3rdparty_la_SOURCES +=					\
   slave/containerizer/fetcher.hpp					\
   slave/containerizer/mesos/constants.hpp				\
   slave/containerizer/mesos/containerizer.hpp				\
+  slave/containerizer/hypervisor/containerizer.hpp			\
   slave/containerizer/mesos/isolator.hpp				\
   slave/containerizer/mesos/launch.hpp					\
   slave/containerizer/mesos/launcher.hpp				\
@@ -1347,6 +1350,11 @@ mesos_executor_SOURCES = 						\
   launcher/posix/executor.cpp
 mesos_executor_CPPFLAGS = $(MESOS_CPPFLAGS)
 mesos_executor_LDADD = libmesos.la $(LDADD)
+
+pkglibexec_PROGRAMS += mesos-hypervisor-executor
+mesos_hypervisor_executor_SOURCES = hypervisor/executor.cpp
+mesos_hypervisor_executor_CPPFLAGS = $(MESOS_CPPFLAGS)
+mesos_hypervisor_executor_LDADD = libmesos.la $(LDADD)
 
 pkglibexec_PROGRAMS += mesos-containerizer
 mesos_containerizer_SOURCES = slave/containerizer/mesos/main.cpp
